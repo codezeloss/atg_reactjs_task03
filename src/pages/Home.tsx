@@ -28,15 +28,15 @@ function Home() {
 
   return (
     <>
-      <main className="w-full flex justify-center my-20 mx-3">
-        <div className="flex gap-20 w-fit">
+      <main className="w-full flex justify-center my-20">
+        <div className="flex gap-14 w-fit">
           {/* Users List */}
           <div className="w-[650px]">
             <h1 className="text-lg font-medium py-4 text-center bg-blue-950 text-white w-full mb-4">
               Users List
             </h1>
 
-            <div className="h-[600px] overflow-y-scroll">
+            <div className="h-[650px] overflow-y-scroll">
               <div>{isLoading && users.length === 0 && <Spinner />}</div>
               <div>
                 {isError && (

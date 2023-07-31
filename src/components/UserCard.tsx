@@ -49,17 +49,17 @@ function UserCard({
           <div className="w-full flex flex-col gap-3">
             <div>
               <p className="text-sm font-bold mb-1">Full Name</p>
-              <p className="bg-gray-100 px-4 py-2 border-[1px]">
+              <p className="text-base">
                 {firstname} {lastname}
               </p>
             </div>
             <div>
               <p className="text-sm font-bold mb-1">Job Title</p>
-              <p className="bg-gray-100 px-4 py-2 border-[1px]">{jobTitle}</p>
+              <p className="text-base">{jobTitle}</p>
             </div>
             <div>
               <p className="text-sm font-bold mb-1">Email</p>
-              <p className="bg-gray-100 px-4 py-2 border-[1px]">{email}</p>
+              <p className="text-base">{email}</p>
             </div>
           </div>
         </div>
