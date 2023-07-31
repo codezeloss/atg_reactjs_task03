@@ -7,7 +7,7 @@ export default {
         primary: "#020617",
       },
       fontFamily: {
-        ubuntu: ["Ubuntu", "sans-serif"],
+        ubuntu: ["Rubik", "sans-serif"],
       },
       screens: {
         "1bp": { max: "1300px" },
