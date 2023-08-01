@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { getAllUsers, getSingleUser } from "../features/users/usersSlice.ts";
 import UserCard from "../components/UserCard.tsx";
 import { useLocation } from "react-router-dom";
-import Spinner from "../components/Spinner.tsx";
 import UsersList from "../components/UsersList.tsx";
 
 function Home() {
@@ -24,48 +23,45 @@ function Home() {
 
   // ** RTK - Users State
   const usersState = useSelector((state: any) => state.users);
-  const { isLoading, isError, users, user } = usersState;
+  const { isLoading, isError, isSuccess, users, user } = usersState;
 
   return (
     <>
-      <main className="w-full flex justify-center my-20">
-        <div className="flex gap-14 w-fit">
+      <main className="w-full h-screen flex justify-center items-center 2bp:h-full my-5 2bp:my-10 3bp:my-3 3bp:w-full 3bp:h-full">
+        <div className="flex gap-14 2bp:flex-col-reverse 2bp:gap-8 3bp:mx-3 3bp:w-full">
           {/* Users List */}
-          <div className="w-[650px]">
-            <h1 className="text-lg font-medium py-4 text-center bg-blue-950 text-white w-full mb-4">
-              Users List
-            </h1>
-
-            <div className="h-[650px] overflow-y-scroll">
-              <div>{isLoading && users.length === 0 && <Spinner />}</div>
-              <div>
-                {isError && (
-                  <h1 className="text-lg font-bold my-20">No data to show</h1>
-                )}
-              </div>
-              <div>{users && <UsersList usersData={users} />}</div>
-            </div>
+          <div>
+            {users.length !== 0 && isSuccess && (
+              <UsersList
+                usersData={users}
+                isLoading={isLoading}
+                isError={isError}
+              />
+            )}
           </div>
 
           {/* User Card Details */}
-          {userID && (
-            <div className="w-fit">
-              {user && (
-                <div key={user?.id}>
-                  <UserCard
-                    image={user?.avatar}
-                    username={user?.profile?.username}
-                    about={user?.Bio}
-                    firstname={user?.profile?.firstName}
-                    lastname={user?.profile?.lastName}
-                    jobTitle={user?.jobTitle}
-                    email={user?.profile?.email}
-                    isLoading={isLoading}
-                  />
-                </div>
-              )}
-            </div>
-          )}
+          <div>
+            {userID && (
+              <div className="w-fit 3bp:w-full">
+                {user && (
+                  <div key={user?.id}>
+                    <UserCard
+                      image={user?.avatar}
+                      username={user?.profile?.username}
+                      about={user?.Bio}
+                      firstname={user?.profile?.firstName}
+                      lastname={user?.profile?.lastName}
+                      jobTitle={user?.jobTitle}
+                      email={user?.profile?.email}
+                      isLoading={isLoading}
+                      isError={isError && !user}
+                    />
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
         </div>
       </main>
     </>
